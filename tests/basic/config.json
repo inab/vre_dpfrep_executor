@@ -1,0 +1,43 @@
+{
+    "input_files": [
+        {
+            "name": "expression_matrix",
+            "value": "unique_file_id_5f69e8969af1e4.71323526",
+            "required": true,
+            "allow_multiple": false
+        }
+    ],
+    "arguments": [
+        {
+            "name": "execution",
+            "value": "/test/execution/directory"
+        },
+        {
+            "name": "project",
+            "value": "my_project_id"
+        },
+        {
+            "name": "reference_ids",
+            "value": "NULL"
+        },
+        {
+            "name": "file_type",
+            "value": "CSV"
+        }
+    ],
+    "output_files": [
+        {
+            "name": "drug_ranked_list",
+            "required": true,
+            "allow_multiple": false,
+            "file": {
+                "file_type": "CSV",
+                "data_type": "drug_ranked_list",
+                "meta_data": {
+                    "visible": true,
+                    "description": "For each condition, a list of predicted drugs from the most to the least effective."
+                }
+            }
+        }
+    ]
+}

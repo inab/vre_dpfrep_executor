@@ -1,0 +1,71 @@
+{
+    "_id": "DpFrEP",
+    "input_files": [
+        {
+            "name": "expression_matrix",
+            "description": "Expression matrix that contain normalized counts for each individual gene in each condition.",
+            "help": "Columns are conditions and rows are genes.",
+            "file_type": [
+                "CSV",
+                "TSV"
+            ],
+            "data_type": [
+                "expression_profile"
+            ],
+            "required": true,
+            "allow_multiple": false
+        }
+    ],
+    "input_files_public_dir": [],
+    "input_files_combinations": [
+        {
+            "description": "Expression matrix that contain normalized counts.",
+            "input_files": [
+                "expression_matrix"
+            ]
+        }
+    ],
+    "arguments": [
+        {
+            "name": "reference_ids",
+            "description": "Comma-delimited string indicating the ids of reference conditions.",
+            "help": "Default is NULL. In that case the analysis will be performed for each condition without computing z-scores.",
+            "type": "string",
+            "default": ""
+        },
+        {
+            "name": "file_type",
+            "description": "Input file type",
+            "help": "",
+            "type": "enum",
+            "enum_items": {
+                "description": [
+                    "CSV",
+                    "TSV"
+                ],
+                "name": [
+                    "CSV",
+                    "TSV"
+                ]
+            },
+            "default": [
+                "CSV"
+            ]
+        }
+    ],
+    "output_files": [
+        {
+            "name": "drug_ranked_list",
+            "required": true,
+            "allow_multiple": false,
+            "file": {
+                "file_type": "CSV",
+                "data_type": "drug_ranked_list",
+                "meta_data": {
+                    "visible": true,
+                    "description": "For each condition, a list of predicted drugs from the most to the least effective."
+                }
+            }
+        }
+    ]
+}

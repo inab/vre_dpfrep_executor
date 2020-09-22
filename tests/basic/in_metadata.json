@@ -1,0 +1,33 @@
+[
+    {
+        "_id": "unique_file_id_5f69e8969af1e4.71323526",
+        "file_path": "/home/user/vre_dpfrep_executor/tests/basic/dpfrep_example.csv",
+        "file_type": "CSV",
+        "data_type": "expression_profile",
+        "compressed": 0,
+        "sources": [],
+        "user_id": "user_id",
+        "creation_time": {
+            "$date": {
+                "$numberLong": "1600776342000"
+            }
+        },
+        "taxon_id": 0,
+        "meta_data": {
+            "type": "file",
+            "size": 0,
+            "project": "my_project_id",
+            "atime": {
+                "$date": {
+                    "$numberLong": "1600776342000"
+                }
+            },
+            "parentDir": "unique_file_id_5f69e8969af8c6.42683400",
+            "lastAccess": {
+                "$date": {
+                    "$numberLong": "1600776342000"
+                }
+            }
+        }
+    }
+]
