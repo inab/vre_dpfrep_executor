@@ -34,14 +34,14 @@ Directly from GitHub:
 
 ```bash
 cd $HOME
-git clone https://github.com/inab/vre_rdpfrep_executor.git
-cd vre_rdpfrep_executor
+git clone https://github.com/inab/vre_dpfrep_executor.git
+cd vre_dpfrep_executor
 ```
 
 Create the Python environment:
 
 ```bash
-python3 -m venv $HOME/vre_rdpfrep_executor/venv
+python3 -m venv $HOME/vre_dpfrep_executor/venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
