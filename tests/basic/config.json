@@ -2,7 +2,7 @@
     "input_files": [
         {
             "name": "expression_matrix",
-            "value": "unique_file_id_5f69e8969af1e4.71323526",
+            "value": "unique_file_id_5f7aeaaf8ce404.91631247",
             "required": true,
             "allow_multiple": false
         }
@@ -21,8 +21,16 @@
             "value": "NULL"
         },
         {
+            "name": "tumor_type",
+            "value": "SOLID"
+        },
+        {
             "name": "file_type",
             "value": "CSV"
+        },
+        {
+            "name": "return_stdz_ES",
+            "value": false
         }
     ],
     "output_files": [
