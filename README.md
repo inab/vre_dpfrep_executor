@@ -7,7 +7,7 @@ It should have all of the base functionality and is set up for unit testing and 
 ## Requirements
 
 - Python 3.6 or later (Recommended 3.7)
-- Python3.6-pip, Python3.6-dev and Python3.6-venv or later
+- Python3.6-dev and Python3.6-venv or later
 - R-4.0
 
 ```bash
