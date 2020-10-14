@@ -3,54 +3,67 @@
     "input_files": [
         {
             "name": "expression_matrix",
-            "description": "Expression matrix that contain normalized counts for each individual gene in each condition.",
-            "help": "Columns are conditions and rows are genes.",
+            "description": "Comma-delimited file containing normalized counts for each individual gene (rows) in each condition (columns)",
+            "help": "",
             "file_type": [
-                "CSV",
-                "TSV"
+                "CSV"
             ],
             "data_type": [
                 "expression_profile"
             ],
             "required": true,
             "allow_multiple": false
+        },
+        {
+            "name": "reference_ids",
+            "description": "Comma-delimited file indicating the ids of reference conditions",
+            "help": "If NULL the analysis will be performed for each condition without computing z-scores",
+            "file_type": [
+                "CSV"
+            ],
+            "data_type": [
+                "reference_conditions"
+            ],
+            "required": false,
+            "allow_multiple": false
         }
     ],
     "input_files_public_dir": [],
     "input_files_combinations": [
         {
-            "description": "Expression matrix that contain normalized counts.",
+            "description": "Run DpFrEP pipeline",
             "input_files": [
-                "expression_matrix"
+                "expression_matrix",
+                "reference_ids"
             ]
         }
     ],
     "arguments": [
         {
-            "name": "reference_ids",
-            "description": "Comma-delimited string indicating the ids of reference conditions.",
-            "help": "Default is NULL. In that case the analysis will be performed for each condition without computing z-scores.",
-            "type": "string",
-            "default": ""
-        },
-        {
-            "name": "file_type",
-            "description": "Input file type",
+            "name": "tumor_type",
+            "description": "Tumor type",
             "help": "",
             "type": "enum",
             "enum_items": {
                 "description": [
-                    "CSV",
-                    "TSV"
+                    "SOLID",
+                    "LIQUID"
                 ],
                 "name": [
-                    "CSV",
-                    "TSV"
+                    "SOLID",
+                    "LIQUID"
                 ]
             },
             "default": [
-                "CSV"
+                "SOLID"
             ]
+        },
+        {
+            "name": "return_stdz_ES",
+            "description": "A logical indicating whether ES across each drug should be standardized",
+            "help": "Recommended for hundreds of transcriptional profiles in input, or more",
+            "type": "boolean",
+            "default": false
         }
     ],
     "output_files": [
@@ -59,11 +72,11 @@
             "required": true,
             "allow_multiple": false,
             "file": {
-                "file_type": "CSV",
-                "data_type": "drug_ranked_list",
+                "file_type": "XLSX",
+                "data_type": "predicted_drugs",
                 "meta_data": {
                     "visible": true,
-                    "description": "For each condition, a list of predicted drugs from the most to the least effective."
+                    "description": "For each condition, a list of predicted drugs from the most to the least effective"
                 }
             }
         }

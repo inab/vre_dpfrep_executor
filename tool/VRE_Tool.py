@@ -21,7 +21,7 @@ import time
 
 from basic_modules.tool import Tool
 from utils import logger
-from lib.dpfrep import DpFrEP  # TODO change
+from lib.dpfrep import DpFrEP
 
 
 class RUNNER(Tool):
@@ -29,16 +29,15 @@ class RUNNER(Tool):
     This is a class for DpFrEP Tool module.
     """
 
-    MASKED_KEYS = {'execution', 'project', 'description', 'reference_ids',
-                   'file_type'}  # TODO add arguments from config.json
-    R_SCRIPT_PATH = "/home/user/vre_dpfrep_executor/lib/run_dpfrep.r"  # TODO change
+    MASKED_KEYS = {'execution', 'project', 'description', 'tumor_type', 'return_stdz_ES'}
+    R_SCRIPT_PATH = "/home/user/vre_dpfrep_executor/lib/run_dpfrep.r"   # TODO CHANGE
     debug_mode = False  # If True debug mode is on, False otherwise
 
     def __init__(self, configuration=None):
         """
         Init function
         """
-        logger.debug("VRE DpFrEP runner")  # TODO change
+        logger.debug("VRE DpFrEP runner")
         Tool.__init__(self)
 
         if configuration is None:
@@ -51,7 +50,7 @@ class RUNNER(Tool):
             if isinstance(v, list):
                 self.configuration[k] = ' '.join(v)
 
-        self.dpfrep = DpFrEP()  # TODO change
+        self.dpfrep = DpFrEP()
         self.outputs = dict()
         self.execution_path = None
 
@@ -65,18 +64,17 @@ class RUNNER(Tool):
         :type arguments: dict
         """
         try:
-            logger.debug("Getting CSV or TSV input file")
-            file_input_path = input_files["expression_matrix"]  # TODO change from input_files config.json
+            logger.debug("Getting CSV input files")
+            expression_matrix = input_files["expression_matrix"]
+            reference_ids = input_files["reference_ids"]
 
-            if file_input_path is None:
-                errstr = "CSV or TSV input file must be defined"
+            if expression_matrix is None:
+                errstr = "CSV expression_matrix input file must be defined"
                 logger.fatal(errstr)
                 raise Exception(errstr)
 
-            print(arguments)
-
             # DpFrEP execution
-            process = self.dpfrep.execute_dpfrep_rscript(file_input_path, arguments, self.R_SCRIPT_PATH)  # TODO change
+            process = self.dpfrep.execute_dpfrep_rscript(expression_matrix, reference_ids, arguments, self.R_SCRIPT_PATH)
 
             # Sending the DpFrEP execution stdout to the log file
             for line in iter(process.stderr.readline, b''):
@@ -132,7 +130,7 @@ class RUNNER(Tool):
             logger.debug("Execution path: {}".format(self.execution_path))
 
             logger.debug("DpFrEP execution")
-            self.execute_dpfrep(input_files, self.configuration)  # TODO change
+            self.execute_dpfrep(input_files, self.configuration)
 
             # Create and validate the output files
             self.create_output_files(output_files, output_metadata)
@@ -145,7 +143,7 @@ class RUNNER(Tool):
             logger.fatal(errstr)
             raise Exception(errstr)
 
-    def create_output_files(self, output_files, output_metadata):  # TODO add from output_files config.json
+    def create_output_files(self, output_files, output_metadata):
         """
         Create output files list
 
@@ -159,14 +157,12 @@ class RUNNER(Tool):
         """
         try:
             global file_path
-            drug_ranked = self.configuration.get('drug_ranked_list', '.')  # TODO add new output files
+            drug_ranked = self.configuration.get('predicted_drugs', '.')
 
             for metadata in output_metadata:  # for each output file in output_metadata
                 out_id = metadata["name"]
                 pop_output_path = list()  # list of tuples (path, type of output)
                 if out_id in output_files.keys():
-                    # if out_id == "drug_ranked_list": optional
-                    # TODO change if yoy want to change the name of the output file
                     file_path = self.execution_path + "/" + out_id + "_" + drug_ranked.replace(' ', '') + ".csv"
 
                     pop_output_path.append((file_path, "file"))  # add file_path and file_type

@@ -19,13 +19,12 @@
 import argparse
 import sys
 
-from basic_modules.workflow import Workflow
 from utils import logger
 from apps.jsonapp import JSONApp
 from tool.VRE_Tool import RUNNER
 
 
-class process_WF_RUNNER(Workflow):
+class process_WF_RUNNER:
     """
     Functions for demonstrating the pipeline set up.
     """
