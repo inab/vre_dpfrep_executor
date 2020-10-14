@@ -1,3 +1,3 @@
 # TODO add R libraries needed
-R -e "install.packages(c('dplyr', 'tibble', 'ggplot2', 'BiocManager'))"
-R -e "BiocManager::install('progeny')"
+R -e "install.packages(c('mosaic', 'reshape2', 'prodlim','openxlsx','BiocManager'))"
+R -e "BiocManager::install('fgsea')"
