@@ -37,10 +37,10 @@ class process_WF_RUNNER:
         Initialise the tool with its configuration.
 
         :param configuration: a dictionary containing parameters that define how the operation should be carried out,
-        which are specific to each Dorothea.
+        which are specific to each DpFrEP.
         :type configuration: dict
         """
-        logger.debug("Processing Dorothea")
+        logger.debug("Processing DpFrEP")
         if configuration is None:
             configuration = {}
 
@@ -62,13 +62,13 @@ class process_WF_RUNNER:
         :rtype: dict, dict
         """
         try:
-            logger.debug("Initialise the Dorothea")
+            logger.debug("Initialise the DpFrEP")
             tt_handle = RUNNER(self.configuration)
             tt_files, tt_meta = tt_handle.run(input_files, metadata, output_files, output_metadata)
             return tt_files, tt_meta
 
         except Exception as error:
-            errstr = "Test Dorothea wasn't processed successfully. ERROR: {}".format(error)
+            errstr = "Test DpFrEP wasn't processed successfully. ERROR: {}".format(error)
             logger.error(errstr)
             raise Exception(errstr)
 
@@ -105,7 +105,7 @@ def main_json(config_path, in_metadata_path, out_metadata_path):
 if __name__ == "__main__":
 
     # Set up the command line parameters
-    PARSER = argparse.ArgumentParser(description="VRE Dorothea runner")
+    PARSER = argparse.ArgumentParser(description="VRE DpFrEP runner")
     PARSER.add_argument("--config", help="Configuration file", required=True)
     PARSER.add_argument("--in_metadata", help="Location of input metadata file", required=True)
     PARSER.add_argument("--out_metadata", help="Location of output metadata file", required=True)

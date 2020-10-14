@@ -156,14 +156,12 @@ class RUNNER(Tool):
         :rtype: dict, dict
         """
         try:
-            global file_path
-            drug_ranked = self.configuration.get('predicted_drugs', '.')
 
             for metadata in output_metadata:  # for each output file in output_metadata
                 out_id = metadata["name"]
                 pop_output_path = list()  # list of tuples (path, type of output)
                 if out_id in output_files.keys():
-                    file_path = self.execution_path + "/" + out_id + "_" + drug_ranked.replace(' ', '') + ".csv"
+                    file_path = self.execution_path + "/" + out_id + ".csv"
 
                     pop_output_path.append((file_path, "file"))  # add file_path and file_type
 

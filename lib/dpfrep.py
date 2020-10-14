@@ -57,6 +57,5 @@ class DpFrEP:
 
         print(cmd)
 
-        # process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        # return process
-        pass
+        process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        return process

@@ -1,7 +1,7 @@
 [
     {
         "_id": "unique_file_id_5f86d310150cd9.00552897",
-        "file_path": "/home/user/vre_dpfrep_executor/tests/basic/dpfrep_expr_example.csv",
+        "file_path": "/home/laura/ipc/vre_dpfrep_executor/tests/basic/data/dpfrep_expr_example.csv",
         "file_type": "CSV",
         "data_type": "expression_profile",
         "compressed": 0,
@@ -32,7 +32,7 @@
     },
     {
         "_id": "unique_file_id_5f86d310150fa9.99070374",
-        "file_path": "/home/user/vre_dpfrep_executor/tests/basic/dpfrep_ref_example.csv",
+        "file_path": "/home/laura/ipc/vre_dpfrep_executor/tests/basic/data/dpfrep_ref_example.csv",
         "file_type": "CSV",
         "data_type": "reference_conditions",
         "compressed": 0,
