@@ -4,7 +4,7 @@ library(reshape2)
 library(prodlim)
 library(openxlsx)
 
-source('/home/user/vre_dpfrep_executor/lib/dpfrep_functions.r')
+source('/home/user/vre_dpfrep_executor/lib/dpfrep_functions.R')
 
 
 message("STARTING DRUG PREDICTION PROCESS")
@@ -31,9 +31,24 @@ if(reference_ids!='NULL'){
   exp_mtx <- sapply(condition_ids,function(i)apply(exp_mtx[,c(i,reference_ids)],1,mosaic::zscore)[1,])
 }
 
-message("Running DpFrEP") 
 
-PCC <- readRDS(paste('rds/PCC_',tumor_type,'.rds',sep=''))
+message("Importing models") 
+
+PCC <- vector(mode='list',length = 2)
+names(PCC) <- c('Broad','Sanger')
+
+for(i in names(PCC)){
+  root <- paste('/home/user/vre_dpfrep_executor/',tumor_type,i,sep='/')
+  all_rds <- list.files(root)
+  PCC[[i]] <- vector(mode='list',length = length(all_rds))
+  for(j in seq_along(all_rds)){
+    PCC[[i]][[j]] <- readRDS(paste(root,all_rds[j],sep='/'))
+  }
+  PCC[[i]] <- do.call(rbind,PCC[[i]])
+}
+
+
+message("Running DpFrEP") 
 
 all_met <- get_all_met(exp_mtx,PCC,standardize = return_stdz_ES)
 cons <- lapply(all_met,get_consensus)
