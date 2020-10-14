@@ -38,7 +38,7 @@ PCC <- vector(mode='list',length = 2)
 names(PCC) <- c('Broad','Sanger')
 
 for(i in names(PCC)){
-  root <- paste('/home/user/vre_dpfrep_executor/',tumor_type,i,sep='/')
+  root <- paste('/home/user/vre_dpfrep_executor/tests/basic/data',tumor_type,i,sep='/')
   all_rds <- list.files(root)
   PCC[[i]] <- vector(mode='list',length = length(all_rds))
   for(j in seq_along(all_rds)){
