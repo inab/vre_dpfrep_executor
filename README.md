@@ -13,11 +13,11 @@ It should have all of the base functionality and is set up for unit testing and 
 ```bash
 sudo apt update
 sudo apt install python3.6 
-sudo apt install python3.6-pip python3.6-dev python3.6-venv
+sudo apt install python3.6-dev python3.6-venv
 sudo apt install r-base
 ```
 
-- [DpFrEP](#TODO add URL from repo)
+- [DpFrEP](https://github.com/inab/vre_dpfrep_executor/blob/master/RDpFrEP.sh)
 
 Install R library dependencies:
 
@@ -41,7 +41,7 @@ cd vre_dpfrep_executor
 Create the Python environment:
 
 ```bash
-python3 -m venv $HOME/vre_dpfrep_executor/venv
+python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
