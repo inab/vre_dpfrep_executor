@@ -1,7 +1,7 @@
 [
     {
-        "_id": "unique_file_id_5f86d310150cd9.00552897",
-        "file_path": "/home/laura/ipc/vre_dpfrep_executor/tests/basic/data/dpfrep_expr_example.csv",
+        "_id": "unique_file_id_601c0be3b04d66.52353572",
+        "file_path": "/home/user/vre_dpfrep_executor/tests/basic/dpfrep_expr_example.csv",
         "file_type": "CSV",
         "data_type": "expression_profile",
         "compressed": 0,
@@ -9,7 +9,7 @@
         "user_id": "user_id",
         "creation_time": {
             "$date": {
-                "$numberLong": "1602671376000"
+                "$numberLong": "1612450787000"
             }
         },
         "taxon_id": 0,
@@ -19,44 +19,13 @@
             "project": "my_project_id",
             "atime": {
                 "$date": {
-                    "$numberLong": "1602671376000"
+                    "$numberLong": "1612450787000"
                 }
             },
-            "parentDir": "unique_file_id_5f86d310150ea9.69251100",
+            "parentDir": "unique_file_id_601c0be3b04fc3.17869810",
             "lastAccess": {
                 "$date": {
-                    "$numberLong": "1602671376000"
-                }
-            }
-        }
-    },
-    {
-        "_id": "unique_file_id_5f86d310150fa9.99070374",
-        "file_path": "/home/laura/ipc/vre_dpfrep_executor/tests/basic/data/dpfrep_ref_example.csv",
-        "file_type": "CSV",
-        "data_type": "reference_conditions",
-        "compressed": 0,
-        "sources": [],
-        "user_id": "user_id",
-        "creation_time": {
-            "$date": {
-                "$numberLong": "1602671376000"
-            }
-        },
-        "taxon_id": 0,
-        "meta_data": {
-            "type": "file",
-            "size": 0,
-            "project": "my_project_id",
-            "atime": {
-                "$date": {
-                    "$numberLong": "1602671376000"
-                }
-            },
-            "parentDir": "unique_file_id_5f86d3101510e7.87289972",
-            "lastAccess": {
-                "$date": {
-                    "$numberLong": "1602671376000"
+                    "$numberLong": "1612450787000"
                 }
             }
         }
