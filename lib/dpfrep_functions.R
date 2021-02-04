@@ -111,17 +111,6 @@ get_all_strat_pval <- function(exp_mtx,rand_mtx,model){
 
 
 
-get_drug_efficacy<-function(all_strat_pval){
-  df<-Reduce(function(x,y)merge(x,y,by=c('Var1','Var2')),all_strat_pval)
-  df<-data.frame(all_strat_pval[,1:2],value=apply(all_strat_pval[,3:6],1,geo.mean))
-  
-  colnames(df)<-c('sample.id','drug.id','value')
-  cons_BRD_Sanger$c.id <- BRD_CCLs_info$cosmic.id[match(cons_BRD_Sanger$c.id,BRD_CCLs_info$ccl_name)]
-  
-}
-
-
-
 geo.mean<-function (x, na.rm = TRUE) {
   return(exp(mean(log(x), na.rm = TRUE)))
 }
