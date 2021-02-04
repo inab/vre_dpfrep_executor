@@ -3,7 +3,7 @@
     "input_files": [
         {
             "name": "expression_matrix",
-            "description": "Comma-delimited file containing normalized counts for each individual gene (rows) in each condition (columns)",
+            "description": "Comma-delimited file containing normalized counts for each gene (rows) in each condition (columns)",
             "help": "",
             "file_type": [
                 "CSV"
@@ -13,19 +13,6 @@
             ],
             "required": true,
             "allow_multiple": false
-        },
-        {
-            "name": "reference_ids",
-            "description": "Comma-delimited file indicating the ids of reference conditions",
-            "help": "If NULL the analysis will be performed for each condition without computing z-scores",
-            "file_type": [
-                "CSV"
-            ],
-            "data_type": [
-                "reference_conditions"
-            ],
-            "required": false,
-            "allow_multiple": false
         }
     ],
     "input_files_public_dir": [],
@@ -33,8 +20,7 @@
         {
             "description": "Run DpFrEP pipeline",
             "input_files": [
-                "expression_matrix",
-                "reference_ids"
+                "expression_matrix"
             ]
         }
     ],
@@ -59,11 +45,25 @@
             ]
         },
         {
-            "name": "return_stdz_ES",
-            "description": "A logical indicating whether ES across each drug should be standardized",
-            "help": "Recommended for hundreds of transcriptional profiles in input, or more",
-            "type": "boolean",
-            "default": false
+            "name": "model",
+            "description": "Model used to predict drug efficacy (Ensemble refers to both Broad and Sanger models)",
+            "help": "",
+            "type": "enum",
+            "enum_items": {
+                "description": [
+                    "Broad",
+                    "Sanger",
+                    "Ensemble"
+                ],
+                "name": [
+                    "Broad",
+                    "Sanger",
+                    "Ensemble"
+                ]
+            },
+            "default": [
+                "Broad"
+            ]
         }
     ],
     "output_files": [
