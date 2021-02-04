@@ -1,8 +1,8 @@
-library(mosaic)
+library(fastmatch)
 library(fgsea)
-library(reshape2)
-library(prodlim)
 library(openxlsx)
+library(reshape2)
+
 
 source('/home/user/vre_dpfrep_executor/lib/dpfrep_functions.R')
 
@@ -68,4 +68,3 @@ drug_efficacy<-drug_efficacy[order(drug_efficacy$`G-value`),]
 drug_efficacy <- split(drug_efficacy[,seq_along(drug_efficacy)[-1]],drug_efficacy$sample.id)
 
 write.xlsx(drug_efficacy,file=paste("Drug_predictions_",Sys.time(),".xlsx",sep=''))
-
