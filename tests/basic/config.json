@@ -2,37 +2,27 @@
     "input_files": [
         {
             "name": "expression_matrix",
-            "value": "unique_file_id_5f86d310150cd9.00552897",
+            "value": "unique_file_id_601c0be3b04d66.52353572",
             "required": true,
-            "allow_multiple": false
-        },
-        {
-            "name": "reference_ids",
-            "value": "unique_file_id_5f86d310150fa9.99070374",
-            "required": false,
             "allow_multiple": false
         }
     ],
     "arguments": [
         {
             "name": "execution",
-            "value": "/home/laura/ipc/vre_dpfrep_executor/tests/basic/run000"
+            "value": "/test/execution/directory"
         },
         {
             "name": "project",
-            "value": "test"
-        },
-        {
-            "name": "description",
-            "value": "test"
+            "value": "my_project_id"
         },
         {
             "name": "tumor_type",
             "value": "SOLID"
         },
         {
-            "name": "return_stdz_ES",
-            "value": false
+            "name": "model",
+            "value": "Broad"
         }
     ],
     "output_files": [
