@@ -1,3 +1,3 @@
 # TODO add R libraries needed
-R -e "install.packages(c('mosaic', 'reshape2', 'prodlim','openxlsx','BiocManager'))"
+R -e "install.packages(c('BiocManager','fastmatch','openxlsx','reshape2'))"
 R -e "BiocManager::install('fgsea')"
