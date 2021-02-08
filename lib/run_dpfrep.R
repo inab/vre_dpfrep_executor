@@ -42,7 +42,7 @@ PCC <- vector(mode='list',length=length(model_name))
 names(PCC) <- model_name
 
 for(i in model_name){
-  root <- paste(tumor_type,i,sep='/')
+  root <- paste('home/user/vre_dpfrep_executor/tests/basic/data',tumor_type,i,sep='/')
   all_rds <- list.files(root)
   PCC[[i]] <- vector(mode='list',length = length(all_rds))
   for(j in seq_along(all_rds)){
@@ -61,7 +61,7 @@ message("Writing output file")
 for(i in seq_along(drug_efficacy)) drug_efficacy[[i]]$model<-names(drug_efficacy)[i]
 drug_efficacy<-Reduce(rbind,drug_efficacy)
 
-meta <- read.csv(file = 'drug_meta.csv', check.names = F, stringsAsFactors = F)
+meta <- read.csv(file = 'home/user/vre_dpfrep_executor/tests/basic/data/drug_meta.csv', check.names = F, stringsAsFactors = F)
 drug_efficacy <- cbind(drug_efficacy,meta[match(drug_efficacy$drug.id,meta$drug.id),seq_along(meta)[-1]])
 
 drug_efficacy<-drug_efficacy[order(drug_efficacy$`G-value`),]
