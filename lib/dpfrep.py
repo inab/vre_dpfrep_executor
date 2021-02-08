@@ -27,14 +27,12 @@ class DpFrEP:
     """
 
     @staticmethod
-    def execute_dpfrep_rscript(expression_matrix, reference_ids, arguments, input_r_script_path):
+    def execute_dpfrep_rscript(expression_matrix, arguments, input_r_script_path):
         """
         Execute DpFrEP.
 
         :param expression_matrix: Path of input CSV file
         :type expression_matrix: str
-        :param reference_ids: Path of input CSV file
-        :type reference_ids: str
         :param arguments: Dict containing tool arguments
         :type arguments: dict
         :param input_r_script_path: Path of R script file
@@ -50,9 +48,8 @@ class DpFrEP:
             '--vanilla',
             input_r_script_path,
             expression_matrix,
-            reference_ids,
-            str(args_list[3]),
-            str(args_list[4])
+            str(args_list[2]),
+            str(args_list[3])
         ]
 
         print(cmd)

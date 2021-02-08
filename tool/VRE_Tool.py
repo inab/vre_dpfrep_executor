@@ -29,8 +29,8 @@ class RUNNER(Tool):
     This is a class for DpFrEP Tool module.
     """
 
-    MASKED_KEYS = {'execution', 'project', 'description', 'tumor_type', 'return_stdz_ES'}
-    R_SCRIPT_PATH = "/home/user/vre_dpfrep_executor/lib/run_dpfrep.r"   # TODO CHANGE
+    MASKED_KEYS = {'execution', 'project', 'description', 'tumor_type', 'model'}
+    R_SCRIPT_PATH = "/Users/laurarodrigueznavas/PycharmProjects/vre_dpfrep_executor/lib/run_dpfrep.R"   # TODO CHANGE
     debug_mode = False  # If True debug mode is on, False otherwise
 
     def __init__(self, configuration=None):
@@ -66,7 +66,6 @@ class RUNNER(Tool):
         try:
             logger.debug("Getting CSV input files")
             expression_matrix = input_files["expression_matrix"]
-            reference_ids = input_files["reference_ids"]
 
             if expression_matrix is None:
                 errstr = "CSV expression_matrix input file must be defined"
@@ -74,7 +73,7 @@ class RUNNER(Tool):
                 raise Exception(errstr)
 
             # DpFrEP execution
-            process = self.dpfrep.execute_dpfrep_rscript(expression_matrix, reference_ids, arguments, self.R_SCRIPT_PATH)
+            process = self.dpfrep.execute_dpfrep_rscript(expression_matrix, arguments, self.R_SCRIPT_PATH)
 
             # Sending the DpFrEP execution stdout to the log file
             for line in iter(process.stderr.readline, b''):
@@ -161,7 +160,7 @@ class RUNNER(Tool):
                 out_id = metadata["name"]
                 pop_output_path = list()  # list of tuples (path, type of output)
                 if out_id in output_files.keys():
-                    file_path = self.execution_path + "/" + out_id + ".csv"
+                    file_path = self.execution_path + "/" + out_id + ".xlsx"
 
                     pop_output_path.append((file_path, "file"))  # add file_path and file_type
 

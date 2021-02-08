@@ -7,21 +7,22 @@
 ### * Automatically created by VRE *
 ###
 
-
 # Local installation - EDIT IF REQUIRED
-
-WORKING_DIR=/test/execution/directory
-TOOL_EXECUTABLE=/main/mg-tool/executable.py
-
-# Test input files
-
 CWD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-TEST_DATA_DIR=$CWD/json/0_RunDpFrEPpipeline
 
+TEST_DATA_DIR=$CMD
+WORKING_DIR=$TEST_DATA_DIR/run000
+TOOL_EXECUTABLE=$TEST_DATA_DIR/../../VRE_RUNNER
 
-# Running DpFrEP tool ...
+echo $TEST_DATA_DIR
+echo $WORKING_DIR
 
-if [ -d  $WORKING_DIR ]; then rm -r $WORKING_DIR/; mkdir -p $WORKING_DIR; else mkdir -p $WORKING_DIR; fi
+# Running DpFrEP wrapper_test tool
+
+if [ -d $WORKING_DIR ]; then
+  rm -r $WORKING_DIR/
+  mkdir -p $WORKING_DIR
+else mkdir -p $WORKING_DIR; fi
 cd $WORKING_DIR
 
 echo "--- Test execution: $WORKING_DIR"

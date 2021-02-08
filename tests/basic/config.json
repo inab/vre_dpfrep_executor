@@ -2,7 +2,7 @@
     "input_files": [
         {
             "name": "expression_matrix",
-            "value": "unique_file_id_601c0be3b04d66.52353572",
+            "value": "unique_file_id_6020f2f9895807.08418234",
             "required": true,
             "allow_multiple": false
         }
@@ -10,11 +10,15 @@
     "arguments": [
         {
             "name": "execution",
-            "value": "/test/execution/directory"
+            "value": "/Users/laurarodrigueznavas/PycharmProjects/vre_dpfrep_executor/tests/basic/run000"
         },
         {
             "name": "project",
-            "value": "my_project_id"
+            "value": "test"
+        },
+        {
+            "name": "description",
+            "value": "test"
         },
         {
             "name": "tumor_type",

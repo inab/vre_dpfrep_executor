@@ -1,7 +1,7 @@
 [
     {
-        "_id": "unique_file_id_601c0be3b04d66.52353572",
-        "file_path": "/home/user/vre_dpfrep_executor/tests/basic/dpfrep_expr_example.csv",
+        "_id": "unique_file_id_6020f2f9895807.08418234",
+        "file_path": "/Users/laurarodrigueznavas/PycharmProjects/vre_dpfrep_executor/tests/basic/data/dpfrep_expr_example.csv",
         "file_type": "CSV",
         "data_type": "expression_profile",
         "compressed": 0,
@@ -9,7 +9,7 @@
         "user_id": "user_id",
         "creation_time": {
             "$date": {
-                "$numberLong": "1612450787000"
+                "$numberLong": "1612772089000"
             }
         },
         "taxon_id": 0,
@@ -19,13 +19,13 @@
             "project": "my_project_id",
             "atime": {
                 "$date": {
-                    "$numberLong": "1612450787000"
+                    "$numberLong": "1612772089000"
                 }
             },
-            "parentDir": "unique_file_id_601c0be3b04fc3.17869810",
+            "parentDir": "unique_file_id_6020f2f9895fe1.00680992",
             "lastAccess": {
                 "$date": {
-                    "$numberLong": "1612450787000"
+                    "$numberLong": "1612772089000"
                 }
             }
         }
