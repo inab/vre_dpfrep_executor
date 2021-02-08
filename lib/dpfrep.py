@@ -48,8 +48,8 @@ class DpFrEP:
             '--vanilla',
             input_r_script_path,
             expression_matrix,
-            str(args_list[2]),
-            str(args_list[3])
+            str(args_list[3]),
+            str(args_list[4])
         ]
 
         print(cmd)

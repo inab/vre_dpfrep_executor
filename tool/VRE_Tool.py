@@ -30,7 +30,7 @@ class RUNNER(Tool):
     """
 
     MASKED_KEYS = {'execution', 'project', 'description', 'tumor_type', 'model'}
-    R_SCRIPT_PATH = "/Users/laurarodrigueznavas/PycharmProjects/vre_dpfrep_executor/lib/run_dpfrep.R"   # TODO CHANGE
+    R_SCRIPT_PATH = "/home/laura/vre_dpfrep_executor/lib/run_dpfrep.R"   # TODO CHANGE
     debug_mode = False  # If True debug mode is on, False otherwise
 
     def __init__(self, configuration=None):
