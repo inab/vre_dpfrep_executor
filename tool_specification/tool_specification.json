@@ -1,0 +1,118 @@
+{
+    "_id": "DpFrEP",
+    "name": "DpFrEP",
+    "title": "Drug Prediction from Expression Profile",
+    "short_description": "This is a one or two lines description of what 'My Tool' does. You can leave a dummy text for the moment!",
+    "long_description": "This is a longer description of what 'My Tool' does. It includes information about the software use for it, the supported inputs, the expected results, etc. You can leave a dummy text for the moment!",
+    "url": "https://github.com/inab/vre_dpfrep_executor",
+    "publication": "",
+    "owner": {
+        "author": "My Name",
+        "institution": "My University",
+        "contact": "myEmail@uni.cat",
+        "url": "https:\/\/MyUniversity.uni.cat\/MyGroup"
+    },
+    "keywords": [
+        ""
+    ],
+    "keywords_tool": [
+        "",
+        ""
+    ],
+    "infrastructure": {
+        "memory": 12,
+        "cpus": 4,
+        "executable": "\/VM\/path\/where\/main\/executable\/is\/going\/to\/be\/MyTool.py",
+        "clouds": {
+            "mug-irb": {
+                "launcher": "PMES",
+                "workflowType": "COMPSs",
+                "minimumVMs": 1,
+                "initialVMs": 1,
+                "default_cloud": true
+            }
+        }
+    },
+    "input_files": [
+        {
+            "name": "expression_matrix",
+            "description": "Comma-delimited file containing normalized counts for each gene (rows) in each condition (columns)",
+            "help": "",
+            "file_type": [
+                "CSV"
+            ],
+            "data_type": [
+                "expression_profile"
+            ],
+            "required": true,
+            "allow_multiple": false
+        }
+    ],
+    "input_files_public_dir": [],
+    "input_files_combinations": [
+        {
+            "description": "Run DpFrEP pipeline",
+            "input_files": [
+                "expression_matrix"
+            ]
+        }
+    ],
+    "arguments": [
+        {
+            "name": "tumor_type",
+            "description": "Tumor type",
+            "help": "",
+            "type": "enum",
+            "enum_items": {
+                "description": [
+                    "SOLID",
+                    "LIQUID"
+                ],
+                "name": [
+                    "SOLID",
+                    "LIQUID"
+                ]
+            },
+            "default": [
+                "SOLID"
+            ]
+        },
+        {
+            "name": "model",
+            "description": "Model used to predict drug efficacy (Ensemble refers to both Broad and Sanger models)",
+            "help": "",
+            "type": "enum",
+            "enum_items": {
+                "description": [
+                    "Broad",
+                    "Sanger",
+                    "Ensemble"
+                ],
+                "name": [
+                    "Broad",
+                    "Sanger",
+                    "Ensemble"
+                ]
+            },
+            "default": [
+                "Broad"
+            ]
+        }
+    ],
+    "has_custom_viewer": false,
+    "output_files": [
+        {
+            "name": "drug_ranked_list",
+            "required": true,
+            "allow_multiple": false,
+            "file": {
+                "file_type": "XLSX",
+                "data_type": "predicted_drugs",
+                "meta_data": {
+                    "visible": true,
+                    "description": "For each condition, a list of predicted drugs from the most to the least effective"
+                }
+            }
+        }
+    ]
+}
