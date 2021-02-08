@@ -11,7 +11,7 @@ message("STARTING DRUG PREDICTION PROCESS")
 
 message("Reading input arguments")
 args = commandArgs(trailingOnly = TRUE)
-if(length(args)!=2){
+if(length(args)!=3){
   print("Please supply all arguments.")
 }
 
