@@ -1,4 +1,1 @@
-pylint
-pytest
-mock
 git+https://github.com/inab/openvre-tool-api.git
