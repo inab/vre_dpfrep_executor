@@ -40,7 +40,6 @@ class Wrapper:
         which are specific to DpFrEP tool.
         :type configuration: dict
         """
-        logger.debug("Initialise DpFrEP tool configuration")
         if configuration is None:
             configuration = {}
 
@@ -89,7 +88,6 @@ def main_wrapper(config_path, in_metadata_path, out_metadata_path):
     :rtype: bool
     """
     try:
-        logger.info("1. Instantiate and launch the Tool")
         app = JSONApp()
 
         result = app.launch(Wrapper, config_path, in_metadata_path, out_metadata_path)

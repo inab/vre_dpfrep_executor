@@ -10,7 +10,7 @@
   "arguments": [
     {
       "name": "execution",
-      "value": "ADD_YOUR_LOCAL_PATH/vre_dpfrep_executor/tests/basic/run000"
+      "value": "/Users/laurarodrigueznavas/PycharmProjects/vre_dpfrep_executor/tests/basic/run000"
     },
     {
       "name": "project",
