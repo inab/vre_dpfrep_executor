@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-__author__ = 'Laura Rodriguez-Navas <https://orcid.org/0000-0003-4929-1219> and Mario Failli'
+__author__ = 'Laura Rodriguez-Navas <https://orcid.org/0000-0003-4929-1219> and Mario Failli <https://orcid.org/0000-0002-3490-7714>'
 __copyright__ = '© 2020 Barcelona Supercomputing Center (BSC), ES' \
                 '© 2020 University of Naples (UNINA), IT'
 __license__ = 'Apache 2.0'
