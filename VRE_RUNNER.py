@@ -21,7 +21,7 @@ import sys
 
 from utils import logger
 from apps.jsonapp import JSONApp
-from tool.VRE_Tool import Tool
+from tool.VRE_Tool import myTool
 
 
 class Wrapper:
@@ -63,7 +63,7 @@ class Wrapper:
         """
         try:
             logger.debug("Run the DpFrEP tool")
-            tt_handle = Tool(self.configuration)
+            tt_handle = myTool(self.configuration)
             tt_files, tt_meta = tt_handle.run(input_files, input_metadata, output_files, output_metadata)
             return tt_files, tt_meta
 
