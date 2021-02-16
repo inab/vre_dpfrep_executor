@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- Python 3.6 or later.
+- Python 3.6 or later
 - R
 - git
 
@@ -13,7 +13,7 @@ sudo apt install r-base
 sudo apt install git
 ```
 
-In order to install the Python dependencies you need `pip` and `venv`modules.
+In order to install the Python dependencies you need `pip` and `venv` modules.
 
 ```bash
 sudo apt install python3-pip python3-venv
@@ -22,6 +22,7 @@ sudo apt install python3-pip python3-venv
 Install R dependencies:
 
 ```bash
+cd R
 ./RDpFrEP.sh
 ```
 

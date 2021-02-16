@@ -1,33 +1,32 @@
 [
-    {
-        "_id": "unique_file_id_6020f2f9895807.08418234",
-        "file_path": "/home/laura/vre_dpfrep_executor/tests/basic/data/dpfrep_expr_example.csv",
-        "file_type": "CSV",
-        "data_type": "expression_profile",
-        "compressed": 0,
-        "sources": [],
-        "user_id": "user_id",
-        "creation_time": {
-            "$date": {
-                "$numberLong": "1612772089000"
-            }
-        },
-        "taxon_id": 0,
-        "meta_data": {
-            "type": "file",
-            "size": 0,
-            "project": "my_project_id",
-            "atime": {
-                "$date": {
-                    "$numberLong": "1612772089000"
-                }
-            },
-            "parentDir": "unique_file_id_6020f2f9895fe1.00680992",
-            "lastAccess": {
-                "$date": {
-                    "$numberLong": "1612772089000"
-                }
-            }
+  {
+    "_id": "unique_file_id_6020f2f9895807.08418234",
+    "type": "file",
+    "file_path": "ADD_YOUR_LOCAL_PATH/vre_dpfrep_executor/tests/basic/data/dpfrep_expr_example.csv",
+    "file_type": "CSV",
+    "data_type": "expression_profile",
+    "compressed": 0,
+    "sources": [],
+    "user_id": "user_id",
+    "creation_time": {
+      "$date": {
+        "$numberLong": "1612772089000"
+      }
+    },
+    "meta_data": {
+      "size": 0,
+      "project": "test",
+      "atime": {
+        "$date": {
+          "$numberLong": "1612772089000"
         }
+      },
+      "parentDir": "unique_file_id_6020f2f9895fe1.00680992",
+      "lastAccess": {
+        "$date": {
+          "$numberLong": "1612772089000"
+        }
+      }
     }
+  }
 ]
