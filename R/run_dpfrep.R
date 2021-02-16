@@ -4,7 +4,7 @@ library(openxlsx)
 library(reshape2)
 
 
-source('/home/user/vre_dpfrep_executor/lib/dpfrep_functions.R')
+source('/home/user/vre_dpfrep_executor/R/dpfrep_functions.R')
 
 
 message("STARTING DRUG PREDICTION PROCESS")
