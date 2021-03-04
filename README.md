@@ -22,7 +22,7 @@ sudo apt install python3-pip python3-venv
 Install R dependencies:
 
 ```bash
-cd R
+cd dpfrep
 ./RDpFrEP.sh
 ```
 
