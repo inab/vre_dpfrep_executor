@@ -2,7 +2,7 @@
   {
     "_id": "unique_file_id_6020f2f9895807.08418234",
     "type": "file",
-    "file_path": "ADD_YOUR_LOCAL_PATH/vre_dpfrep_executor/tests/basic/data/dpfrep_expr_example.csv",
+    "file_path": "ADD_YOUR_LOCAL_PATH/vre_dpfrep_executor/tests/basic/dpfrep_expr_example.csv",
     "file_type": "CSV",
     "data_type": "expression_profile",
     "compressed": 0,
