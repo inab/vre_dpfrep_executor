@@ -29,7 +29,7 @@ class myTool(Tool):
     This class define DpFrEP Tool.
     """
     DEFAULT_KEYS = ['execution', 'project', 'description']  # config.json default keys
-    R_SCRIPT_PATH = "R/run_dpfrep.R"
+    R_SCRIPT_PATH = "dpfrep/run_dpfrep.R"
 
     def __init__(self, configuration=None):
         """
@@ -122,22 +122,21 @@ class myTool(Tool):
                 model
             ]
 
-            print(cmd)
-            # process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            #
-            # # Sending the stdout to the log file
-            # for line in iter(process.stderr.readline, b''):
-            #     print(line.rstrip().decode("utf-8").replace("", " "))
-            #
-            # rc = process.poll()
-            # while rc is None:
-            #     rc = process.poll()
-            #     time.sleep(0.1)
-            #
-            # if rc is not None and rc != 0:
-            #     logger.progress("Something went wrong inside the Rscript execution. See logs.", status="WARNING")
-            # else:
-            #     logger.progress("The Rscript execution finished successfully.", status="FINISHED")
+            process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+            # Sending the stdout to the log file
+            for line in iter(process.stderr.readline, b''):
+                print(line.rstrip().decode("utf-8").replace("", " "))
+
+            rc = process.poll()
+            while rc is None:
+                rc = process.poll()
+                time.sleep(0.1)
+
+            if rc is not None and rc != 0:
+                logger.progress("Something went wrong inside the Rscript execution. See logs.", status="WARNING")
+            else:
+                logger.progress("The Rscript execution finished successfully.", status="FINISHED")
 
         except:
             errstr = "The Rscript execution failed. See logs."
@@ -146,28 +145,19 @@ class myTool(Tool):
 
     def createOutput(self, output_files, output_metadata):
         """
-        Set output files of Rscript execution
+        Set and validate output file of Rscript execution
 
-        :param output_files: # TODO
-        :type output_files: # TODO
-        :param output_metadata: List of matching metadata for the output files
+        :param output_files: Dictionary of the output files locations. expected to be generated.
+        :type output_files: dict
+        :param output_metadata: # TODO
         :type output_metadata: list
-        :return: # TODO
-        :rtype: dict, dict
         """
-        try:
-            for metadata in output_metadata:
-                output_id = metadata["name"]
-                outputs = list()  # list of tuples (path, type of output)
-                if output_id in output_files.keys():
-                    file_path = self.execution_path + "/" + output_id + ".xlsx"
-                    outputs.append((file_path, "file"))
-                    output_files[output_id] = outputs
-
-            print(output_files)
-            print(output_metadata)
-
-        except:
-            errstr = "Output files not created. See logs."
+        output_id = output_metadata[0]["name"]
+        output_type = output_metadata[0]["file"]["file_type"].lower()
+        output_file_path = "{}/{}.{}".format(self.execution_path, output_id, output_type)
+        if os.path.isfile(output_file_path):
+            output_files[output_id] = [(output_file_path, "file")]
+        else:
+            errstr = "Output file not created. See logs."
             logger.fatal(errstr)
             raise Exception(errstr)
