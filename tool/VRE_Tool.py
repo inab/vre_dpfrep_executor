@@ -29,7 +29,7 @@ class myTool(Tool):
     This class define DpFrEP Tool.
     """
     DEFAULT_KEYS = ['execution', 'project', 'description']  # config.json default keys
-    R_SCRIPT_PATH = "dpfrep/run_dpfrep.R"
+    R_SCRIPT_PATH = "/dpfrep/run_dpfrep.R"
 
     def __init__(self, configuration=None):
         """
@@ -51,6 +51,8 @@ class myTool(Tool):
                 self.configuration[k] = ' '.join(v)
 
         # Init variables
+        self.current_dir = os.path.abspath(os.path.dirname(__file__))
+        self.parent_dir = os.path.abspath(self.current_dir + "/../")
         self.execution_path = os.path.abspath(self.configuration.get('execution', '.'))
         self.arguments = dict(
             [(key, value) for key, value in self.configuration.items() if key not in self.DEFAULT_KEYS]
@@ -87,8 +89,12 @@ class myTool(Tool):
             # Tool Execution
             self.toolExecution(input_files)
 
-            # Create and validate the output files from tool execution
-            self.createOutput(output_files, output_metadata)
+            # Create and validate the output file from tool execution
+            output_id = output_metadata[0]["name"]
+            output_type = output_metadata[0]["file"]["file_type"].lower()
+            output_file_path = "{}/{}.{}".format(self.execution_path, output_id, output_type)
+            print(output_file_path)
+            output_files[output_id] = [(output_file_path, "file")]
 
             return output_files, output_metadata
 
@@ -114,9 +120,9 @@ class myTool(Tool):
 
             # Rscript execution
             cmd = [
-                '/usr/bin/Rscript',
+                'Rscript',
                 '--vanilla',
-                self.R_SCRIPT_PATH,
+                self.parent_dir + self.R_SCRIPT_PATH,
                 expression_matrix,
                 tumor_type,
                 model
@@ -141,23 +147,4 @@ class myTool(Tool):
         except:
             errstr = "The Rscript execution failed. See logs."
             logger.error(errstr)
-            raise Exception(errstr)
-
-    def createOutput(self, output_files, output_metadata):
-        """
-        Set and validate output file of Rscript execution
-
-        :param output_files: Dictionary of the output files locations. expected to be generated.
-        :type output_files: dict
-        :param output_metadata: # TODO
-        :type output_metadata: list
-        """
-        output_id = output_metadata[0]["name"]
-        output_type = output_metadata[0]["file"]["file_type"].lower()
-        output_file_path = "{}/{}.{}".format(self.execution_path, output_id, output_type)
-        if os.path.isfile(output_file_path):
-            output_files[output_id] = [(output_file_path, "file")]
-        else:
-            errstr = "Output file not created. See logs."
-            logger.fatal(errstr)
             raise Exception(errstr)
