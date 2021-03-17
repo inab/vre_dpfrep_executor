@@ -76,12 +76,12 @@ class myTool(Tool):
         try:
             # Set and validate execution directory. If not exists the directory will be created.
             if not os.path.isdir(self.execution_path):
-                os.makedirs(self.execution_path)
+                os.mkdir(self.execution_path)
 
             # Set and validate execution parent directory. If not exists the directory will be created.
             execution_parent_dir = os.path.dirname(self.execution_path)
             if not os.path.isdir(execution_parent_dir):
-                os.makedirs(execution_parent_dir)
+                os.mkdir(execution_parent_dir)
 
             # Update working directory to execution path
             os.chdir(self.execution_path)
