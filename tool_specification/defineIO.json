@@ -68,7 +68,7 @@
     ],
     "output_files": [
         {
-            "name": "drug_ranked_list",
+            "name": "predicted_drugs",
             "required": true,
             "allow_multiple": false,
             "file": {
