@@ -93,7 +93,6 @@ class myTool(Tool):
             output_id = output_metadata[0]["name"]
             output_type = output_metadata[0]["file"]["file_type"].lower()
             output_file_path = "{}/{}.{}".format(self.execution_path, output_id, output_type)
-            print(output_file_path)
             output_files[output_id] = [(output_file_path, "file")]
 
             return output_files, output_metadata
