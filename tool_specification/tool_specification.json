@@ -2,33 +2,33 @@
     "_id": "DpFrEP",
     "name": "DpFrEP",
     "title": "Drug Prediction from Expression Profile",
-    "short_description": "This is a one or two lines description of what 'My Tool' does. You can leave a dummy text for the moment!",
-    "long_description": "This is a longer description of what 'My Tool' does. It includes information about the software use for it, the supported inputs, the expected results, etc. You can leave a dummy text for the moment!",
-    "url": "https://github.com/inab/vre_dpfrep_executor",
+    "short_description": "The proposed method estimates the anticancer effect of a set of drugs on bulk expression profiles provided in input.",
+    "long_description": "For each drug and for each profile, the enrichment extent of top/bottom expressed genes  in marker genes of drug sensitivity/resistance, previously precompiled, and vice versa, is quantified using Gene Set Enrichment Analysis (GSEA). Then, for each GSEA strategy, the probability of obtaining smaller/greater enrichment scores (ESs) than the observed ones, from randomized expression profiles, is determined independently. Last, the geometric mean of individual probabilities, G, is computed to assess the overall drug efficacy. The smaller the G-value, the higher the drug efficacy, thereby the likelihood that the profile is sensitive to the drug. Finally, a drug ranked list is generated for each profile provided in input by sorting drug G-values in ascending order.",
+    "url": "https:\/\/github.com\/inab\/vre_dpfrep_executor",
     "publication": "",
     "owner": {
-        "author": "My Name",
-        "institution": "My University",
-        "contact": "myEmail@uni.cat",
-        "url": "https:\/\/MyUniversity.uni.cat\/MyGroup"
+        "author": "Mario Failli",
+        "institution": "University of Naples Federico II (UNINA)",
+        "contact": "m.failli@tigem.it",
+        "url": "https:\/\/dibernardo.tigem.it\/"
     },
     "keywords": [
-        ""
+        "drug sensitivity predictions",
+        "expression profiles",
+        "GSEA",
+        "geometric mean"
     ],
     "keywords_tool": [
-        "",
-        ""
+        "DpFrEP"
     ],
+    "status": 0,
     "infrastructure": {
-        "memory": 12,
-        "cpus": 4,
-        "executable": "\/VM\/path\/where\/main\/executable\/is\/going\/to\/be\/MyTool.py",
+        "memory": 8,
+        "cpus": 2,
+        "executable": "\/home\/user\/vre_dpfrep_executor\/VRE_RUNNER",
         "clouds": {
             "mug-irb": {
-                "launcher": "PMES",
-                "workflowType": "COMPSs",
-                "minimumVMs": 1,
-                "initialVMs": 1,
+                "launcher": "SGE",
                 "default_cloud": true
             }
         }
@@ -102,7 +102,7 @@
     "has_custom_viewer": false,
     "output_files": [
         {
-            "name": "drug_ranked_list",
+            "name": "predicted_drugs",
             "required": true,
             "allow_multiple": false,
             "file": {
