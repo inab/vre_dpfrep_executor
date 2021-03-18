@@ -92,7 +92,7 @@ class myTool(Tool):
             # Create and validate the output file from tool execution
             output_id = output_metadata[0]["name"]
             output_type = output_metadata[0]["file"]["file_type"].lower()
-            output_file_path = "{}/{}.{}".format(self.execution_path, output_id, output_type)
+            output_file_path = "{}/{}.{}".format(self.execution_path, "Drug_predictions_", output_type)
             output_files[output_id] = [(output_file_path, "file")]
 
             return output_files, output_metadata
@@ -124,7 +124,8 @@ class myTool(Tool):
                 self.parent_dir + self.R_SCRIPT_PATH,
                 expression_matrix,
                 tumor_type,
-                model
+                model,
+                self.parent_dir
             ]
 
             process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)

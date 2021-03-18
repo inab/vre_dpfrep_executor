@@ -2,9 +2,6 @@ library(fastmatch)
 library(fgsea)
 library(openxlsx)
 library(reshape2)
-library(here)
-
-source(here("dpfrep", "dpfrep_functions.R"))
 
 message("STARTING DRUG PREDICTION PROCESS")
 
@@ -17,6 +14,10 @@ if (length(args) != 3) {
 input_file <- args[1]
 tumor_type <- args[2]
 model_name <- args[3]
+parent_dir <- args[4]
+functions_dir <- paste(parent_dir, "dpfrep/dpfrep_functions.R", sep = '/')
+
+source(functions_dir)
 
 exp_mtx <- as.matrix(read.csv(file = input_file, check.names = F, row.names = 1, stringsAsFactors = F))
 
@@ -42,7 +43,7 @@ names(PCC) <- model_name
 
 for (i in model_name) {
 
-  root <- paste(here("dpfrep", "data"), tumor_type, i, sep = '/')
+  root <- paste(parent_dir, "dpfrep/data", tumor_type, i, sep = '/')
   all_rds <- list.files(root)
   PCC[[i]] <- vector(mode = 'list', length = length(all_rds))
   for (j in seq_along(all_rds)) {
@@ -61,7 +62,8 @@ message("Writing output file")
 for (i in seq_along(drug_efficacy)) drug_efficacy[[i]]$model <- names(drug_efficacy)[i]
 drug_efficacy <- Reduce(rbind, drug_efficacy)
 
-meta <- read.csv(file = here("dpfrep", "data", "drug_meta.csv"), check.names = F, stringsAsFactors = F)
+meta_file <- paste(parent_dir, "dpfrep/data/drug_meta.csv", sep = '/')
+meta <- read.csv(file = meta_file, check.names = F, stringsAsFactors = F)
 drug_efficacy <- cbind(drug_efficacy, meta[match(drug_efficacy$drug.id, meta$drug.id), seq_along(meta)[-1]])
 
 drug_efficacy <- drug_efficacy[order(drug_efficacy$`G-value`),]
