@@ -1,47 +1,47 @@
 {
-  "input_files": [
-    {
-      "name": "expression_matrix",
-      "value": "unique_file_id_6020f2f9895807.08418234",
-      "required": true,
-      "allow_multiple": false
-    }
-  ],
-  "arguments": [
-    {
-      "name": "execution",
-      "value": "ADD_YOUR_LOCAL_PATH/vre_dpfrep_executor/tests/basic/run000"
-    },
-    {
-      "name": "project",
-      "value": "test"
-    },
-    {
-      "name": "description",
-      "value": "test"
-    },
-    {
-      "name": "tumor_type",
-      "value": "SOLID"
-    },
-    {
-      "name": "model",
-      "value": "Broad"
-    }
-  ],
-  "output_files": [
-    {
-      "name": "predicted_drugs",
-      "required": true,
-      "allow_multiple": false,
-      "file": {
-        "file_type": "XLSX",
-        "data_type": "predicted_drugs",
-        "meta_data": {
-          "visible": true,
-          "description": "For each condition, a list of predicted drugs from the most to the least effective."
+    "input_files": [
+        {
+            "name": "expression_matrix",
+            "value": "unique_file_id_6020f2f9895807.08418234",
+            "required": true,
+            "allow_multiple": false
         }
-      }
-    }
-  ]
+    ],
+    "arguments": [
+        {
+            "name": "execution",
+            "value": "tests/basic/run000"
+        },
+        {
+            "name": "project",
+            "value": "DpFrEP"
+        },
+        {
+            "name": "description",
+            "value": "test"
+        },
+        {
+            "name": "tumor_type",
+            "value": "SOLID"
+        },
+        {
+            "name": "model",
+            "value": "Broad"
+        }
+    ],
+    "output_files": [
+        {
+            "name": "predicted_drugs",
+            "required": true,
+            "allow_multiple": false,
+            "file": {
+                "file_type": "XLSX",
+                "data_type": "predicted_drugs",
+                "meta_data": {
+                    "visible": true,
+                    "description": "For each condition, a list of predicted drugs from the most to the least effective"
+                }
+            }
+        }
+    ]
 }
