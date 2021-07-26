@@ -3,8 +3,8 @@
     "input_files": [
         {
             "name": "expression_matrix",
-            "description": "Comma-delimited file containing normalized counts for each gene (rows) in each condition (columns)",
-            "help": "",
+            "description": "Gene expression matrix with normalized counts for each gene (rows) in each condition (columns)",
+            "help": "Comma-delimited file containing the gene expression matrix",
             "file_type": [
                 "CSV"
             ],
@@ -28,7 +28,7 @@
         {
             "name": "tumor_type",
             "description": "Tumor type",
-            "help": "",
+            "help": "SOLID or LIQUID",
             "type": "enum",
             "enum_items": {
                 "description": [
@@ -46,8 +46,8 @@
         },
         {
             "name": "model",
-            "description": "Model used to predict drug efficacy (Ensemble refers to both Broad and Sanger models)",
-            "help": "",
+            "description": "Model used to predict drug efficacy",
+            "help": "Ensemble refers to both Broad and Sanger models",
             "type": "enum",
             "enum_items": {
                 "description": [

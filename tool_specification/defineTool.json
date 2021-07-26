@@ -2,9 +2,9 @@
     "_id": "DpFrEP",
     "name": "DpFrEP",
     "title": "Drug Prediction from Expression Profile",
-    "short_description": "The proposed method estimates the anticancer effect of a set of drugs on bulk expression profiles provided in input.",
-    "long_description": "For each drug and for each profile, the enrichment extent of top\/bottom expressed genes  in marker genes of drug sensitivity\/resistance, previously precompiled, and vice versa, is quantified using Gene Set Enrichment Analysis (GSEA). Then, for each GSEA strategy, the probability of obtaining smaller\/greater enrichment scores (ESs) than the observed ones, from randomized expression profiles, is determined independently. Last, the geometric mean of individual probabilities, G, is computed to assess the overall drug efficacy. The smaller the G-value, the higher the drug efficacy, thereby the likelihood that the profile is sensitive to the drug. Finally, a drug ranked list is generated for each profile provided in input by sorting drug G-values in ascending order.",
-    "url": "https:\/\/github.com\/inab\/vre_dpfrep_executor.",
+    "short_description": "The proposed method estimates the anticancer effect of a set of drugs on bulk expression profiles provided in input",
+    "long_description": "For each drug and for each profile, the enrichment extent of top\/bottom expressed genes  in marker genes of drug sensitivity\/resistance, previously precompiled, and vice versa, is quantified using Gene Set Enrichment Analysis (GSEA). Then, for each GSEA strategy, the probability of obtaining smaller\/greater enrichment scores (ESs) than the observed ones, from randomized expression profiles, is determined independently. Last, the geometric mean of individual probabilities, G, is computed to assess the overall drug efficacy. The smaller the G-value, the higher the drug efficacy, thereby the likelihood that the profile is sensitive to the drug. Finally, a drug ranked list is generated for each profile provided in input by sorting drug G-values in ascending order",
+    "url": "https:\/\/github.com\/inab\/vre_dpfrep_executor",
     "publication": "",
     "owner": {
         "author": "Mario Failli",
@@ -14,12 +14,11 @@
     },
     "keywords": [
         "drug sensitivity predictions",
-        "expression profiles",
-        "GSEA",
-        "geometric mean"
+        "expression profiles"
     ],
     "keywords_tool": [
-        "DpFrEP"
+        "GSEA",
+        "geometric mean"
     ],
     "infrastructure": {
         "memory": 8,
@@ -35,8 +34,8 @@
     "input_files": [
         {
             "name": "expression_matrix",
-            "description": "Comma-delimited file containing normalized counts for each gene (rows) in each condition (columns)",
-            "help": "",
+            "description": "Gene expression matrix with normalized counts for each gene (rows) in each condition (columns)",
+            "help": "Comma-delimited file containing the gene expression matrix",
             "file_type": [
                 "CSV"
             ],
@@ -60,7 +59,7 @@
         {
             "name": "tumor_type",
             "description": "Tumor type",
-            "help": "",
+            "help": "SOLID or LIQUID",
             "type": "enum",
             "enum_items": {
                 "description": [
@@ -78,8 +77,8 @@
         },
         {
             "name": "model",
-            "description": "Model used to predict drug efficacy (Ensemble refers to both Broad and Sanger models)",
-            "help": "",
+            "description": "Model used to predict drug efficacy",
+            "help": "Ensemble refers to both Broad and Sanger models",
             "type": "enum",
             "enum_items": {
                 "description": [
