@@ -25,7 +25,7 @@ from basic_modules.tool import Tool
 from utils import logger
 
 
-class myTool(Tool):
+class dpfrepTool(Tool):
     """
     This class define DpFrEP Tool.
     """

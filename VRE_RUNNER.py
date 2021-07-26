@@ -21,7 +21,7 @@ import sys
 
 from utils import logger
 from apps.jsonapp import JSONApp
-from tool.VRE_Tool import myTool
+from tool.VRE_Tool import dpfrepTool
 
 
 class Wrapper:
@@ -36,7 +36,7 @@ class Wrapper:
         """
         Initialise the tool with its configuration.
 
-        :param configuration: a dictionary containing parameters that define how the operation should be carried out,
+        :param configuration: A dictionary containing parameters that define how the operation should be carried out,
         which are specific to DpFrEP tool.
         :type configuration: dict
         """
@@ -51,23 +51,22 @@ class Wrapper:
 
         :param input_files: Dictionary of input files locations.
         :type input_files: dict
-        :param input_metadata: Dictionary of files metadata.
+        :param input_metadata: Dictionary of input files metadata.
         :type input_metadata: dict
-        :param output_files: Dictionary of the output files locations. expected to be generated.
+        :param output_files: Dictionary of output files locations expected to be generated.
         :type output_files: dict
-        :param output_metadata: # TODO
+        :param output_metadata: List of output files metadata expected to be generated.
         :type output_metadata: list
-        :return: # TODO
+        :return: Generated output files and their metadata.
         :rtype: dict, dict
         """
         try:
-            logger.debug("Run the DpFrEP tool")
-            tt_handle = myTool(self.configuration)
+            tt_handle = dpfrepTool(self.configuration)
             tt_files, tt_meta = tt_handle.run(input_files, input_metadata, output_files, output_metadata)
             return tt_files, tt_meta
 
         except Exception as error:
-            errstr = "Tool DpFrEP wasn't executed successfully. ERROR: {}".format(error)
+            errstr = "DpFrEP tool wasn't executed successfully. ERROR: {}.".format(error)
             logger.error(errstr)
             raise Exception(errstr)
 
@@ -78,11 +77,11 @@ def main_wrapper(config_path, in_metadata_path, out_metadata_path):
 
     This function launches the tool using configuration written in two json files: config.json and in_metadata.json.
 
-    :param config_path: path to a valid VRE JSON file containing information on how the tool should be executed.
+    :param config_path: Path to a valid VRE JSON file containing information on how the tool should be executed.
     :type config_path: str
-    :param in_metadata_path: path to a valid VRE JSON file containing information on tool inputs.
+    :param in_metadata_path: Path to a valid VRE JSON file containing information on tool inputs.
     :type in_metadata_path: str
-    :param out_metadata_path: path to write the JSON file containing information on tool outputs.
+    :param out_metadata_path: Path to write the VRE JSON file containing information on tool outputs.
     :type out_metadata_path: str
     :return: If result is True, execution finished successfully. False, otherwise.
     :rtype: bool
@@ -91,18 +90,18 @@ def main_wrapper(config_path, in_metadata_path, out_metadata_path):
         app = JSONApp()
 
         result = app.launch(Wrapper, config_path, in_metadata_path, out_metadata_path)
-        logger.info("2. Tool successfully executed; see " + out_metadata_path)
+        logger.progress("DpFrEP tool successfully executed; see {}".format(out_metadata_path))
         return result
 
     except Exception as error:
-        errstr = "Tool wasn't successfully executed. ERROR: {}".format(error)
+        errstr = "DpFrEP tool wasn't successfully executed. ERROR: {}.".format(error)
         logger.error(errstr)
         raise Exception(errstr)
 
 
 if __name__ == "__main__":
     PARSER = argparse.ArgumentParser(description="VRE DpFrEP Tool")
-    PARSER.add_argument("--config", help="Configuration file", required=True)
+    PARSER.add_argument("--config", help="Location of configuration file", required=True)
     PARSER.add_argument("--in_metadata", help="Location of input metadata file", required=True)
     PARSER.add_argument("--out_metadata", help="Location of output metadata file", required=True)
     PARSER.add_argument("--log_file", help="Location of the log file", required=False)

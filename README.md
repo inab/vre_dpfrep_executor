@@ -1,4 +1,4 @@
-# VRE DpFrEP Executor
+# VRE DpFrEP Tool Executor
 
 ## Requirements
 
