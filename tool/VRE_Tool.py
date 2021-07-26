@@ -36,7 +36,7 @@ class dpfrepTool(Tool):
         """
         Init function
 
-        :param configuration: a dictionary containing parameters that define how the operation should be carried out,
+        :param configuration: A dictionary containing parameters that define how the operation should be carried out,
         which are specific to DpFrEP tool.
         :type configuration: dict
         """
@@ -54,7 +54,10 @@ class dpfrepTool(Tool):
         # Init variables
         self.current_dir = os.path.abspath(os.path.dirname(__file__))
         self.parent_dir = os.path.abspath(self.current_dir + "/../")
-        self.execution_path = os.path.abspath(self.configuration.get('execution', '.'))
+        self.execution_path = self.configuration.get('execution', '.')
+        if not os.path.isabs(self.execution_path):
+            self.execution_path = os.path.normpath(os.path.join(self.parent_dir, self.execution_path))
+
         self.arguments = dict(
             [(key, value) for key, value in self.configuration.items() if key not in self.DEFAULT_KEYS]
         )
@@ -65,41 +68,45 @@ class dpfrepTool(Tool):
 
         :param input_files: Dictionary of input files locations.
         :type input_files: dict
-        :param input_metadata: Dictionary of files metadata.
+        :param input_metadata: Dictionary of input files metadata.
         :type input_metadata: dict
-        :param output_files: Dictionary of the output files locations. expected to be generated.
+        :param output_files: Dictionary of output files locations expected to be generated.
         :type output_files: dict
-        :param output_metadata: # TODO
+        :param output_metadata: List of output files metadata expected to be generated.
         :type output_metadata: list
-        :return: # TODO
+        :return: Generated output files and their metadata.
         :rtype: dict, dict
         """
         try:
             # Set and validate execution directory. If not exists the directory will be created.
-            if not os.path.isdir(self.execution_path):
-                os.mkdir(self.execution_path)
+            os.makedirs(self.execution_path, exist_ok=True)
 
             # Set and validate execution parent directory. If not exists the directory will be created.
             execution_parent_dir = os.path.dirname(self.execution_path)
-            if not os.path.isdir(execution_parent_dir):
-                os.mkdir(execution_parent_dir)
+            os.makedirs(execution_parent_dir, exist_ok=True)
 
             # Update working directory to execution path
             os.chdir(self.execution_path)
 
-            # Tool Execution
+            # Tool execution
             self.toolExecution(input_files)
 
             # Create and validate the output file from tool execution
             output_id = output_metadata[0]["name"]
             output_type = output_metadata[0]["file"]["file_type"].lower()
             output_file_path = glob(self.execution_path + "/*." + output_type)[0]
-            output_files[output_id] = [(output_file_path, "file")]
+            if os.path.isfile(output_file_path):
+                output_files[output_id] = [(output_file_path, "file")]
 
-            return output_files, output_metadata
+                return output_files, output_metadata
+
+            else:
+                errstr = "Output file {} not created. See logs.".format(output_file_path)
+                logger.fatal(errstr)
+                raise Exception(errstr)
 
         except:
-            errstr = "VRE DpFrEP tool execution failed. See logs."
+            errstr = "DpFrEP tool execution failed. See logs."
             logger.fatal(errstr)
             raise Exception(errstr)
 
@@ -110,42 +117,64 @@ class dpfrepTool(Tool):
         :param input_files: Dictionary of input files locations.
         :type input_files: dict
         """
+        rc = None
+
         try:
-            # Get input files
+            # Get input file
             expression_matrix = input_files.get("expression_matrix")
+            if not os.path.isabs(expression_matrix):
+                expression_matrix = os.path.normpath(os.path.join(self.parent_dir, expression_matrix))
 
             # Get arguments
             tumor_type = self.arguments.get("tumor_type")
             model = self.arguments.get("model")
+            if tumor_type is None or model is None:
+                errstr = "tumor type and model arguments must be defined."
+                logger.fatal(errstr)
+                raise Exception(errstr)
 
             # Rscript execution
-            cmd = [
-                'Rscript',
-                '--vanilla',
-                self.parent_dir + self.R_SCRIPT_PATH,
-                expression_matrix,
-                tumor_type,
-                model,
-                self.parent_dir
-            ]
+            if os.path.isfile(expression_matrix):
 
-            process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                cmd = [
+                    'Rscript',
+                    '--vanilla',
+                    self.parent_dir + self.R_SCRIPT_PATH,
+                    expression_matrix,
+                    tumor_type,
+                    model,
+                    self.parent_dir
+                ]
 
-            # Sending the stdout to the log file
-            for line in iter(process.stderr.readline, b''):
-                print(line.rstrip().decode("utf-8").replace("", " "))
+                process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
-            rc = process.poll()
-            while rc is None:
+                # Sending the stdout to the log file
+                for line in iter(process.stderr.readline, b''):
+                    print(line.rstrip().decode("utf-8").replace("", " "))
+
                 rc = process.poll()
-                time.sleep(0.1)
+                while rc is None:
+                    rc = process.poll()
+                    time.sleep(0.1)
 
-            if rc is not None and rc != 0:
-                logger.progress("Something went wrong inside the Rscript execution. See logs.", status="WARNING")
+                if rc is not None and rc != 0:
+                    logger.progress("Something went wrong inside the Rscript execution. See logs", status="WARNING")
+                else:
+                    logger.progress("Rscript execution finished successfully", status="FINISHED")
+
             else:
-                logger.progress("The Rscript execution finished successfully.", status="FINISHED")
+                errstr = "expression_matrix input file must be defined."
+                logger.fatal(errstr)
+                raise Exception(errstr)
+
 
         except:
-            errstr = "The Rscript execution failed. See logs."
+
+            errstr = "Rscript execution failed. See logs."
+
             logger.error(errstr)
+
+            if rc is not None:
+                logger.error("RETVAL: {}".format(rc))
+
             raise Exception(errstr)
