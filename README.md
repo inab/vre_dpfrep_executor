@@ -1,10 +1,10 @@
-# iPC VRE DpFrEP Executor
+# VRE DpFrEP Executor
 
 ## Requirements
 
 - Python 3.6 or later
-- R
-- git
+- R 4.0.2 or later
+- [git](https://git-scm.com/downloads)
 
 ```bash
 sudo apt update
@@ -17,13 +17,6 @@ In order to install the Python dependencies you need `pip` and `venv` modules.
 
 ```bash
 sudo apt install python3-pip python3-venv
-```
-
-Install R dependencies:
-
-```bash
-cd dpfrep
-./RDpFrEP.sh
 ```
 
 ## Installation
@@ -52,7 +45,9 @@ pip install -r requirements.txt
 ```
 
 ## License
+
 * © 2020 Barcelona Supercomputing Center (BSC), ES
 * © 2020 University of Naples (UNINA), IT
 
-Licensed under the Apache License, version 2.0 <https://www.apache.org/licenses/LICENSE-2.0>, see the file `LICENSE.txt` for details.
+Licensed under the Apache License [Version 2.0](https://www.apache.org/licenses/LICENSE-2.0), see the file `LICENSE` for
+details.
