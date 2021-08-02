@@ -147,4 +147,3 @@ get_drug_efficacy <- function(all_strat_pval) {
   colnames(df) <- c('sample.id', 'drug.id', 'G-value')
   return(df)
 }
-
