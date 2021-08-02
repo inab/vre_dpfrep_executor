@@ -169,12 +169,8 @@ class dpfrepTool(Tool):
 
 
         except:
-
             errstr = "Rscript execution failed. See logs."
-
             logger.error(errstr)
-
             if rc is not None:
                 logger.error("RETVAL: {}".format(rc))
-
             raise Exception(errstr)
