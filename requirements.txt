@@ -1,1 +1,1 @@
-git+https://github.com/inab/openvre-tool-api.git
+git+https://github.com/inab/openvre-tool-api.git@master#egg=openvre-tool-api
