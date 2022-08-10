@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Copyright 2020-2021 Barcelona Supercomputing Center (BSC), Spain
-# Copyright 2020-2021 University of Naples Federico II (UNINA), Italy
+# Copyright 2020-2022 Barcelona Supercomputing Center (BSC), Spain
+# Copyright 2020-2022 University of Naples Federico II (UNINA), Italy
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 
 __author__ = 'Laura Rodriguez-Navas <https://orcid.org/0000-0003-4929-1219>' \
              'Mario Failli <https://orcid.org/0000-0002-3490-7714>'
-__copyright__ = '© 2020-2021 Barcelona Supercomputing Center (BSC), ES' \
-                '© 2020-2021 University of Naples Federico II (UNINA), IT'
+__copyright__ = '© 2020-2022 Barcelona Supercomputing Center (BSC), ES' \
+                '© 2020-2022 University of Naples Federico II (UNINA), IT'
 __license__ = 'Apache 2.0'
 __version__ = '0.1.0'
