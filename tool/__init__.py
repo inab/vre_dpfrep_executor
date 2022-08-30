@@ -21,4 +21,4 @@ __author__ = 'Laura Rodriguez-Navas <https://orcid.org/0000-0003-4929-1219>' \
 __copyright__ = '© 2020-2022 Barcelona Supercomputing Center (BSC), ES' \
                 '© 2020-2022 University of Naples Federico II (UNINA), IT'
 __license__ = 'Apache 2.0'
-__version__ = '0.1.0'
+__version__ = '0.1.1'
